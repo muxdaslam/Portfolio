@@ -8,11 +8,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <style>
-        /* Custom styles to match the dark, professional tone */
+        /* New Color Theme: Charcoal Gray (Background) and Teal (Accent) */
         :root {
-            --primary-color: #fca311; /* Amber/Orange for accents */
-            --secondary-color: #14213d; /* Dark Blue/Black for background */
-            --text-color: #e5e5e5; /* Light gray for text */
+            --primary-color: #20c997; /* Teal/Aqua for accents (Greenish-Blue) */
+            --secondary-color: #1a1a1a; /* Charcoal/Near-Black for background */
+            --card-color: #2a2a2a; /* Slightly lighter charcoal for cards */
+            --text-color: #f1f5f9; /* Light white/slate for text */
         }
 
         body {
@@ -22,51 +23,64 @@
             scroll-behavior: smooth;
         }
 
+        /* Styling for section headings and custom elements */
         .section-heading {
             border-left: 5px solid var(--primary-color);
             padding-left: 1rem;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             font-weight: 800;
+            color: var(--text-color);
         }
 
         .skill-chip {
-            background-color: #1f3050; /* Slightly lighter dark blue */
+            background-color: var(--card-color);
             color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .skill-chip:hover {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            transform: scale(1.05);
         }
 
         .project-card {
-            transition: transform 0.3s, box-shadow 0.3s;
+            background-color: var(--card-color);
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease;
         }
 
         .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
+        }
+        
+        /* New Animation: Slide In on Scroll */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
         }
 
-        .hero-title {
-            animation: fadeIn 2s ease-out;
-        }
-
-        @keyframes fadeIn {
-            0% { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body class="antialiased">
 
     <!-- Navigation Bar -->
-    <nav class="sticky top-0 z-50 bg-gray-900/90 backdrop-blur-sm shadow-xl border-b border-yellow-600/20">
+    <nav class="sticky top-0 z-50 bg-secondary-color/95 backdrop-blur-sm shadow-xl border-b border-primary-color/30">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <a href="#hero" class="flex items-center">
-                    <span class="text-3xl font-extrabold text-white"><span class="text-yellow-500">M</span>AK</span>
+                    <span class="text-3xl font-extrabold text-white"><span class="text-teal-400">M</span>AK</span>
                 </a>
                 <div class="flex space-x-4">
-                    <a href="#about" class="text-gray-300 hover:text-yellow-400 px-3 py-2 text-sm font-medium transition-colors">About</a>
-                    <a href="#skills" class="text-gray-300 hover:text-yellow-400 px-3 py-2 text-sm font-medium transition-colors">Skills</a>
-                    <a href="#projects" class="text-gray-300 hover:text-yellow-400 px-3 py-2 text-sm font-medium transition-colors">Projects</a>
-                    <a href="#contact" class="text-gray-300 hover:text-yellow-400 px-3 py-2 text-sm font-medium transition-colors">Contact</a>
+                    <a href="#about" class="text-gray-300 hover:text-teal-400 px-3 py-2 text-sm font-medium transition-colors">About</a>
+                    <a href="#skills" class="text-gray-300 hover:text-teal-400 px-3 py-2 text-sm font-medium transition-colors">Skills</a>
+                    <a href="#projects" class="text-gray-300 hover:text-teal-400 px-3 py-2 text-sm font-medium transition-colors">Projects</a>
+                    <a href="#contact" class="text-gray-300 hover:text-teal-400 px-3 py-2 text-sm font-medium transition-colors">Contact</a>
                 </div>
             </div>
         </div>
@@ -76,11 +90,11 @@
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
 
         <!-- 1. Hero Section -->
-        <section id="hero" class="py-20 lg:py-32 flex flex-col md:flex-row items-center justify-between">
+        <section id="hero" class="py-20 lg:py-32 flex flex-col md:flex-row items-center justify-between animate-on-scroll">
             <!-- Text Content -->
             <div class="md:w-3/5 text-center md:text-left mb-10 md:mb-0">
-                <p class="text-lg font-semibold text-yellow-500 uppercase tracking-widest mb-3">Portfolio</p>
-                <h1 class="hero-title text-6xl lg:text-8xl font-black text-white leading-tight">
+                <p class="text-lg font-semibold text-teal-400 uppercase tracking-widest mb-3">Portfolio</p>
+                <h1 class="text-6xl lg:text-8xl font-black text-white leading-tight">
                     MAK
                 </h1>
                 <h2 class="text-3xl lg:text-4xl font-light text-gray-300 mt-2 mb-6">
@@ -89,46 +103,45 @@
                 <p class="text-xl text-gray-400 max-w-xl">
                     A results-driven Digital Marketer with proven ability to leverage digital platforms to significantly **increase brand awareness, drive qualified traffic, and achieve higher ROI.**
                 </p>
-                <a href="#contact" class="mt-8 inline-block bg-yellow-500 text-gray-900 font-bold py-3 px-8 rounded-lg shadow-xl hover:bg-yellow-400 transition-colors transform hover:scale-105">
+                <a href="#contact" class="mt-8 inline-block bg-teal-500 text-gray-900 font-bold py-3 px-8 rounded-lg shadow-xl hover:bg-teal-400 transition-colors transform hover:scale-105">
                     Let's Connect
                 </a>
             </div>
-            <!-- Contact Quick Links (From PDF Header) -->
+            <!-- Contact Quick Links -->
             <div class="md:w-2/5 md:pl-10">
-                <div class="bg-gray-800 p-6 rounded-xl shadow-2xl space-y-4">
-                    <h3 class="text-xl font-bold text-yellow-500">MY CONTACTS</h3>
-                    <div class="flex items-center space-x-3 text-gray-300">
-                        <!-- Phone Icon -->
-                        <svg class="w-6 h-6 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                <div class="bg-card-color p-6 rounded-xl shadow-2xl space-y-4 border border-teal-500/10">
+                    <h3 class="text-xl font-bold text-teal-400">MY CONTACTS</h3>
+                    <!-- Contact Details -->
+                    <div class="flex items-center space-x-3 text-gray-300 transition-all duration-300 hover:text-teal-400">
+                        <!-- Phone Icon (Updated color to use accent) -->
+                        <svg class="w-6 h-6 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
                         <span class="text-white">+91 9061651957</span>
                     </div>
-                    <div class="flex items-center space-x-3 text-gray-300">
+                    <div class="flex items-center space-x-3 text-gray-300 transition-all duration-300 hover:text-teal-400">
                         <!-- Website Icon -->
-                        <svg class="w-6 h-6 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                        <a href="https://www.muxdaslam.com" target="_blank" class="text-white hover:text-yellow-400 transition-colors">muxdaslam.com</a>
+                        <svg class="w-6 h-6 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                        <a href="https://www.muxdaslam.com" target="_blank" class="text-white hover:text-teal-400 transition-colors">muxdaslam.com</a>
                     </div>
-                    <div class="flex items-center space-x-3 text-gray-300">
+                    <div class="flex items-center space-x-3 text-gray-300 transition-all duration-300 hover:text-teal-400">
                         <!-- LinkedIn Icon -->
-                        <svg class="w-6 h-6 text-yellow-400" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.263-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                        <a href="https://linkedin.com/in/muxd-aslam" target="_blank" class="text-white hover:text-yellow-400 transition-colors">Linked In/muxd-aslam</a>
+                        <svg class="w-6 h-6 text-teal-400" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.263-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        <a href="https://linkedin.com/in/muxd-aslam" target="_blank" class="text-white hover:text-teal-400 transition-colors">Linked In/muxd-aslam</a>
                     </div>
-                    <div class="flex items-center space-x-3 text-gray-300">
+                    <div class="flex items-center space-x-3 text-gray-300 transition-all duration-300 hover:text-teal-400">
                         <!-- Email Icon -->
-                        <svg class="w-6 h-6 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                        <a href="mailto:muxd.aslam@gmail.com" class="text-white hover:text-yellow-400 transition-colors">muxd.aslam@gmail.com</a>
+                        <svg class="w-6 h-6 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        <a href="mailto:muxd.aslam@gmail.com" class="text-white hover:text-teal-400 transition-colors">muxd.aslam@gmail.com</a>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- 2. About Me Section (Muhammed Aslam) -->
-        <div class="pt-16">
-            <hr class="border-gray-700/50">
-        </div>
-        <section id="about" class="py-20">
-            <h2 class="section-heading text-4xl text-white">About Me</h2>
-            <div class="bg-gray-800 p-8 rounded-xl shadow-2xl">
-                <h3 class="text-3xl font-bold text-yellow-500 mb-4">Muhammed Aslam</h3>
+        <div class="pt-16"><hr class="border-gray-700/50"></div>
+        <section id="about" class="py-20 animate-on-scroll">
+            <h2 class="section-heading text-4xl">About Me</h2>
+            <div class="bg-card-color p-8 rounded-xl shadow-2xl border border-teal-500/10">
+                <h3 class="text-3xl font-bold text-teal-400 mb-4">Muhammed Aslam</h3>
                 <p class="text-gray-300 leading-relaxed text-lg">
                     As a **results-driven Digital Marketer**, I excel in developing and executing high-impact, cross-channel campaigns. My expertise is rooted in core digital disciplines:
                 </p>
@@ -142,128 +155,120 @@
         </section>
 
         <!-- 3. Skills & Tools Section -->
-        <div class="pt-16">
-            <hr class="border-gray-700/50">
-        </div>
-        <section id="skills" class="py-20">
-            <h2 class="section-heading text-4xl text-white">Skills & Expertise</h2>
+        <div class="pt-16"><hr class="border-gray-700/50"></div>
+        <section id="skills" class="py-20 animate-on-scroll">
+            <h2 class="section-heading text-4xl">Skills & Expertise</h2>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
                 <!-- Core Skills -->
-                <div class="bg-gray-800 p-8 rounded-xl shadow-2xl">
-                    <h3 class="text-2xl font-bold text-yellow-500 mb-5">Core Disciplines</h3>
+                <div class="bg-card-color p-8 rounded-xl shadow-2xl border border-teal-500/10">
+                    <h3 class="text-2xl font-bold text-teal-400 mb-5">Core Disciplines</h3>
                     <div class="flex flex-wrap gap-3">
-                        <span class="skill-chip px-4 py-2 rounded-full font-medium shadow-md">SEO</span>
-                        <span class="skill-chip px-4 py-2 rounded-full font-medium shadow-md">SEM (PPC)</span>
-                        <span class="skill-chip px-4 py-2 rounded-full font-medium shadow-md">SMM</span>
-                        <span class="skill-chip px-4 py-2 rounded-full font-medium shadow-md">Performance Marketing</span>
-                        <span class="skill-chip px-4 py-2 rounded-full font-medium shadow-md">Analytics and Reporting</span>
-                        <span class="skill-chip px-4 py-2 rounded-full font-medium shadow-md">Content Marketing</span>
-                        <span class="skill-chip px-4 py-2 rounded-full font-medium shadow-md">Email Marketing</span>
-                        <span class="skill-chip px-4 py-2 rounded-full font-medium shadow-md">Marketing Automation</span>
+                        <span class="skill-chip px-4 py-2 rounded-full font-medium shadow-md border border-teal-500/50">SEO</span>
+                        <span class="skill-chip px-4 py-2 rounded-full font-medium shadow-md border border-teal-500/50">SEM (PPC)</span>
+                        <span class="skill-chip px-4 py-2 rounded-full font-medium shadow-md border border-teal-500/50">SMM</span>
+                        <span class="skill-chip px-4 py-2 rounded-full font-medium shadow-md border border-teal-500/50">Performance Marketing</span>
+                        <span class="skill-chip px-4 py-2 rounded-full font-medium shadow-md border border-teal-500/50">Analytics and Reporting</span>
+                        <span class="skill-chip px-4 py-2 rounded-full font-medium shadow-md border border-teal-500/50">Content Marketing</span>
+                        <span class="skill-chip px-4 py-2 rounded-full font-medium shadow-md border border-teal-500/50">Email Marketing</span>
+                        <span class="skill-chip px-4 py-2 rounded-full font-medium shadow-md border border-teal-500/50">Marketing Automation</span>
                     </div>
                 </div>
 
                 <!-- Tools -->
-                <div class="bg-gray-800 p-8 rounded-xl shadow-2xl">
-                    <h3 class="text-2xl font-bold text-yellow-500 mb-5">Key Tools</h3>
+                <div class="bg-card-color p-8 rounded-xl shadow-2xl border border-teal-500/10">
+                    <h3 class="text-2xl font-bold text-teal-400 mb-5">Key Tools</h3>
                     <div class="flex flex-wrap gap-3">
-                        <span class="skill-chip px-4 py-2 rounded-full font-medium bg-green-600/20 text-green-400 shadow-md">Google Analytics</span>
-                        <span class="skill-chip px-4 py-2 rounded-full font-medium bg-red-600/20 text-red-400 shadow-md">Google Ads</span>
-                        <span class="skill-chip px-4 py-2 rounded-full font-medium bg-blue-600/20 text-blue-400 shadow-md">Google Tag Manager</span>
-                        <span class="skill-chip px-4 py-2 rounded-full font-medium">ahrefs</span>
-                        <span class="skill-chip px-4 py-2 rounded-full font-medium">Mailchimp</span>
-                        <span class="skill-chip px-4 py-2 rounded-full font-medium">Canva</span>
-                        <span class="skill-chip px-4 py-2 rounded-full font-medium">OpenAI</span>
+                        <span class="skill-chip px-4 py-2 rounded-full font-medium bg-green-900/40 text-green-400 shadow-md border border-green-500/50">Google Analytics</span>
+                        <span class="skill-chip px-4 py-2 rounded-full font-medium bg-red-900/40 text-red-400 shadow-md border border-red-500/50">Google Ads</span>
+                        <span class="skill-chip px-4 py-2 rounded-full font-medium bg-blue-900/40 text-blue-400 shadow-md border border-blue-500/50">Google Tag Manager</span>
+                        <span class="skill-chip px-4 py-2 rounded-full font-medium border border-teal-500/50">ahrefs</span>
+                        <span class="skill-chip px-4 py-2 rounded-full font-medium border border-teal-500/50">Mailchimp</span>
+                        <span class="skill-chip px-4 py-2 rounded-full font-medium border border-teal-500/50">Canva</span>
+                        <span class="skill-chip px-4 py-2 rounded-full font-medium border border-teal-500/50">OpenAI</span>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- 4. Projects Section -->
-        <div class="pt-16">
-            <hr class="border-gray-700/50">
-        </div>
+        <div class="pt-16"><hr class="border-gray-700/50"></div>
         <section id="projects" class="py-20">
-            <h2 class="section-heading text-4xl text-white">Projects & Results</h2>
+            <h2 class="section-heading text-4xl animate-on-scroll">Projects & Results</h2>
 
             <div class="space-y-12">
 
                 <!-- Project 1: Website Ranking (SEO) -->
-                <div class="project-card bg-gray-800 p-8 rounded-xl shadow-2xl border-t-4 border-yellow-500">
+                <div class="project-card p-8 rounded-xl shadow-2xl border-t-4 border-teal-500 animate-on-scroll">
                     <h3 class="text-2xl font-bold text-white mb-3 flex items-center">
                         Website Ranking (SEO)
-                        <span class="ml-4 text-sm font-medium text-yellow-400 border border-yellow-400 rounded-full px-3 py-0.5">Top 3 Result</span>
+                        <span class="ml-4 text-sm font-medium text-teal-400 border border-teal-400 rounded-full px-3 py-0.5 bg-teal-900/30">Top 3 Result</span>
                     </h3>
                     <p class="text-gray-400 mb-4 italic">Strategic On-Page and Off-Page SEO Optimization.</p>
-                    <div class="bg-gray-700 p-4 rounded-lg text-gray-200">
-                        <p class="font-semibold text-yellow-300">Objective:</p>
-                        <p>Achieve top rankings for high-intent local search queries.</p>
-                        <p class="font-semibold text-yellow-300 mt-2">Result:</p>
-                        <p class="text-lg font-bold">Ranked personal website in the **Top 3 Google search results** for "best digital marketer in Ernakulam."</p>
-                        <p class="mt-2 text-sm text-gray-400">*(As demonstrated by the search result screenshot in the PDF: muxdaslam.com listed as 3rd result.)*</p>
+                    <div class="bg-gray-700/50 p-4 rounded-lg text-gray-200">
+                        <p class="font-semibold text-teal-300">Result Highlights:</p>
+                        <p class="text-xl font-bold">Ranked personal website in the **Top 3 Google search results** for "best digital marketer in Ernakulam."</p>
+                        <p class="mt-2 text-sm text-gray-400">*(Validated via search result screenshot in portfolio)*</p>
                     </div>
                 </div>
 
                 <!-- Project 2: Google Ads Performance (SEM/PPC) -->
-                <div class="project-card bg-gray-800 p-8 rounded-xl shadow-2xl border-t-4 border-red-500">
+                <div class="project-card p-8 rounded-xl shadow-2xl border-t-4 border-red-500 animate-on-scroll">
                     <h3 class="text-2xl font-bold text-white mb-3">Google Ads Performance</h3>
                     <p class="text-gray-400 mb-4 italic">Executed targeted PPC campaigns to drive clicks and impressions.</p>
 
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                        <div class="bg-gray-700 p-3 rounded-lg"><p class="text-xs text-red-400 font-semibold">Clicks</p><p class="text-2xl font-bold text-white">23</p></div>
-                        <div class="bg-gray-700 p-3 rounded-lg"><p class="text-xs text-red-400 font-semibold">Impressions</p><p class="text-2xl font-bold text-white">225</p></div>
-                        <div class="bg-gray-700 p-3 rounded-lg"><p class="text-xs text-red-400 font-semibold">Avg. CPC</p><p class="text-2xl font-bold text-white">₹18.42</p></div>
-                        <div class="bg-gray-700 p-3 rounded-lg"><p class="text-xs text-red-400 font-semibold">Total Cost</p><p class="text-2xl font-bold text-white">₹424</p></div>
+                        <div class="bg-gray-700/50 p-3 rounded-lg"><p class="text-xs text-red-400 font-semibold">Clicks</p><p class="text-2xl font-bold text-white">23</p></div>
+                        <div class="bg-gray-700/50 p-3 rounded-lg"><p class="text-xs text-red-400 font-semibold">Impressions</p><p class="text-2xl font-bold text-white">225</p></div>
+                        <div class="bg-gray-700/50 p-3 rounded-lg"><p class="text-xs text-red-400 font-semibold">Avg. CPC</p><p class="text-2xl font-bold text-white">₹18.42</p></div>
+                        <div class="bg-gray-700/50 p-3 rounded-lg"><p class="text-xs text-red-400 font-semibold">Total Cost</p><p class="text-2xl font-bold text-white">₹424</p></div>
                     </div>
 
-                    <h4 class="text-lg font-semibold text-yellow-300 mt-6 mb-3">Key Insights:</h4>
+                    <h4 class="text-lg font-semibold text-teal-300 mt-6 mb-3">Key Insights:</h4>
                     <ul class="list-disc list-inside text-gray-300 ml-4 space-y-1">
-                        <li>**Highest Performing Keywords:** Focused on "digital marketing expert in kochi" showing strong CTRs (up to 38.46%).</li>
-                        <li>**Device Focus:** Strong engagement across both **Computers (52.2% of Clicks)** and Mobile Phones (47.8% of Clicks).</li>
-                        <li>**Target Demographic:** Primarily reached Male audience in the **18-34 age brackets**.</li>
+                        <li>**Strong Engagement:** Highest performance on "digital marketing expert in kochi" with high CTR.</li>
+                        <li>**Device Focus:** Balanced engagement across **Computers (52.2% of Clicks)** and Mobile Phones (47.8% of Clicks).</li>
                     </ul>
                 </div>
 
                 <!-- Project 3: META Ads Performance (SMM) -->
-                <div class="project-card bg-gray-800 p-8 rounded-xl shadow-2xl border-t-4 border-blue-500">
+                <div class="project-card p-8 rounded-xl shadow-2xl border-t-4 border-blue-500 animate-on-scroll">
                     <h3 class="text-2xl font-bold text-white mb-3">META Ads Performance (GlowFit Collectives)</h3>
                     <p class="text-gray-400 mb-4 italic">Social Media campaign optimization for a traffic site.</p>
 
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                        <div class="bg-gray-700 p-3 rounded-lg"><p class="text-xs text-blue-400 font-semibold">Link Clicks</p><p class="text-2xl font-bold text-white">216</p></div>
-                        <div class="bg-gray-700 p-3 rounded-lg"><p class="text-xs text-blue-400 font-semibold">Cost per Click</p><p class="text-2xl font-bold text-white">₹0.78</p></div>
-                        <div class="bg-gray-700 p-3 rounded-lg"><p class="text-xs text-blue-400 font-semibold">Amount Spent</p><p class="text-2xl font-bold text-white">₹169.48</p></div>
-                        <div class="bg-gray-700 p-3 rounded-lg"><p class="text-xs text-blue-400 font-semibold">Reach</p><p class="text-2xl font-bold text-white">20,107</p></div>
+                        <div class="bg-gray-700/50 p-3 rounded-lg"><p class="text-xs text-blue-400 font-semibold">Link Clicks</p><p class="text-2xl font-bold text-white">216</p></div>
+                        <div class="bg-gray-700/50 p-3 rounded-lg"><p class="text-xs text-blue-400 font-semibold">Cost per Click</p><p class="text-2xl font-bold text-white">₹0.78</p></div>
+                        <div class="bg-gray-700/50 p-3 rounded-lg"><p class="text-xs text-blue-400 font-semibold">Amount Spent</p><p class="text-2xl font-bold text-white">₹169.48</p></div>
+                        <div class="bg-gray-700/50 p-3 rounded-lg"><p class="text-xs text-blue-400 font-semibold">Reach</p><p class="text-2xl font-bold text-white">20,107</p></div>
                     </div>
 
-                    <h4 class="text-lg font-semibold text-yellow-300 mt-6 mb-3">Optimization & Targeting:</h4>
+                    <h4 class="text-lg font-semibold text-teal-300 mt-6 mb-3">Optimization & Targeting:</h4>
                     <ul class="list-disc list-inside text-gray-300 ml-4 space-y-1">
-                        <li>**Effective CPA:** Maintained a highly efficient cost per result of **₹0.78 per Link Click**.</li>
-                        <li>**Audience Segments:** Targeted specific interests (Streetwear, Shopping Online), behaviors (Frequent Travelers, Engaged Shoppers), and life events (Newlywed/Engaged).</li>
-                        <li>**Demographic Focus:** Successfully drove **88% of clicks from Men** in the highly engaged **18-24 age bracket**.</li>
+                        <li>**Efficient CPA:** Highly efficient cost per result of **₹0.78 per Link Click**.</li>
+                        <li>**Demographic Focus:** Successfully drove **88% of clicks from Men** in the 18-24 age bracket.</li>
                     </ul>
                 </div>
                 
                 <!-- Project 4: Creative Ads -->
-                <div class="project-card bg-gray-800 p-8 rounded-xl shadow-2xl border-t-4 border-green-500">
+                <div class="project-card p-8 rounded-xl shadow-2xl border-t-4 border-green-500 animate-on-scroll">
                     <h3 class="text-2xl font-bold text-white mb-3">Creative Content Campaigns</h3>
                     <p class="text-gray-400 mb-4 italic">Developed compelling visual ads for various products, demonstrating content marketing ability.</p>
 
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-                        <div class="text-center">
+                        <div class="text-center bg-gray-700/50 p-4 rounded-lg">
                             <!-- Placeholder for Ammu's Lemon Pickle -->
-                            <img src="https://placehold.co/400x400/1C2738/FCA311?text=Ammu's+Lemon+Pickle+Ad" alt="Ammu's Lemon Pickle Ad Placeholder" class="w-full h-auto rounded-lg mb-2">
+                            <svg class="w-full h-32 mb-2 text-teal-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c1.657 0 3 .895 3 2s-1.343 2-3 2-3-.895-3-2 1.343-2 3-2zM21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                             <p class="text-sm font-medium text-gray-300">Ammu's Lemon Pickle: "Every biryani deserves its soulmate"</p>
                         </div>
-                        <div class="text-center">
+                        <div class="text-center bg-gray-700/50 p-4 rounded-lg">
                             <!-- Placeholder for Ammu's Pure Cow Ghee -->
-                            <img src="https://placehold.co/400x400/1C2738/FCA311?text=Ammu's+Pure+Cow+Ghee+Ad" alt="Ammu's Pure Cow Ghee Ad Placeholder" class="w-full h-auto rounded-lg mb-2">
+                            <svg class="w-full h-32 mb-2 text-teal-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                             <p class="text-sm font-medium text-gray-300">Ammu's Pure Cow Ghee: "The Golden Touch of Kerala"</p>
                         </div>
-                        <div class="text-center">
+                        <div class="text-center bg-gray-700/50 p-4 rounded-lg">
                             <!-- Placeholder for boAt Ad -->
-                            <img src="https://placehold.co/400x400/1C2738/FCA311?text=boAt+Ad" alt="boAt Ad Placeholder" class="w-full h-auto rounded-lg mb-2">
+                            <svg class="w-full h-32 mb-2 text-teal-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                             <p class="text-sm font-medium text-gray-300">boAt: "PLUG INTO YOUR BOLD"</p>
                         </div>
                     </div>
@@ -273,28 +278,26 @@
         </section>
 
         <!-- 5. Why Hire Me Section -->
-        <div class="pt-16">
-            <hr class="border-gray-700/50">
-        </div>
-        <section id="why-hire-me" class="py-20">
-            <h2 class="section-heading text-4xl text-white">Why Hire Me</h2>
+        <div class="pt-16"><hr class="border-gray-700/50"></div>
+        <section id="why-hire-me" class="py-20 animate-on-scroll">
+            <h2 class="section-heading text-4xl">Why Hire Me</h2>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 
-                <div class="bg-gray-800 p-6 rounded-xl shadow-2xl border-b-4 border-yellow-500">
-                    <div class="text-4xl text-yellow-500 mb-3 font-bold">01.</div>
+                <div class="bg-card-color p-6 rounded-xl shadow-2xl border-b-4 border-teal-500 transition-all duration-300 hover:bg-gray-700/50">
+                    <div class="text-4xl text-teal-500 mb-3 font-bold">01.</div>
                     <h3 class="text-xl font-bold text-white mb-2">Proven Digital Expertise</h3>
                     <p class="text-gray-400">I bring hands-on experience in **SEO, social media, and paid ads** to help your company grow its online presence and attract qualified leads effectively.</p>
                 </div>
                 
-                <div class="bg-gray-800 p-6 rounded-xl shadow-2xl border-b-4 border-yellow-500">
-                    <div class="text-4xl text-yellow-500 mb-3 font-bold">02.</div>
+                <div class="bg-card-color p-6 rounded-xl shadow-2xl border-b-4 border-teal-500 transition-all duration-300 hover:bg-gray-700/50">
+                    <div class="text-4xl text-teal-500 mb-3 font-bold">02.</div>
                     <h3 class="text-xl font-bold text-white mb-2">Results-Focused Approach</h3>
                     <p class="text-gray-400">My focus is on **measurable outcomes**—more traffic, better engagement, and higher conversions—ensuring every campaign delivers real business impact.</p>
                 </div>
 
-                <div class="bg-gray-800 p-6 rounded-xl shadow-2xl border-b-4 border-yellow-500">
-                    <div class="text-4xl text-yellow-500 mb-3 font-bold">03.</div>
+                <div class="bg-card-color p-6 rounded-xl shadow-2xl border-b-4 border-teal-500 transition-all duration-300 hover:bg-gray-700/50">
+                    <div class="text-4xl text-teal-500 mb-3 font-bold">03.</div>
                     <h3 class="text-xl font-bold text-white mb-2">Creative & Data-Driven Strategy</h3>
                     <p class="text-gray-400">I combine **creative content** with **data insights** to craft campaigns that deeply connect with audiences and drive consistent, long-term ROI.</p>
                 </div>
@@ -302,29 +305,27 @@
         </section>
 
         <!-- 6. Contact Section -->
-        <div class="pt-16">
-            <hr class="border-gray-700/50">
-        </div>
-        <section id="contact" class="py-20 text-center">
-            <h2 class="section-heading text-4xl text-white inline-block">Get In Touch</h2>
+        <div class="pt-16"><hr class="border-gray-700/50"></div>
+        <section id="contact" class="py-20 text-center animate-on-scroll">
+            <h2 class="section-heading text-4xl inline-block">Get In Touch</h2>
             <p class="text-xl text-gray-400 mt-4 max-w-2xl mx-auto">
                 Ready to transform your digital strategy? Connect with me to discuss how my proven expertise can drive your business goals.
             </p>
             <div class="mt-10 flex flex-wrap justify-center gap-6">
                 
-                <a href="tel:+919061651957" class="bg-gray-700 text-yellow-400 hover:bg-yellow-500 hover:text-gray-900 font-semibold py-3 px-6 rounded-lg transition-all shadow-md flex items-center space-x-2">
+                <a href="tel:+919061651957" class="bg-teal-500 text-gray-900 font-semibold py-3 px-6 rounded-lg transition-all shadow-md flex items-center space-x-2 hover:bg-teal-400 transform hover:scale-105">
                     <!-- Phone Icon -->
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
                     <span>Call Me</span>
                 </a>
                 
-                <a href="mailto:muxd.aslam@gmail.com" class="bg-gray-700 text-yellow-400 hover:bg-yellow-500 hover:text-gray-900 font-semibold py-3 px-6 rounded-lg transition-all shadow-md flex items-center space-x-2">
+                <a href="mailto:muxd.aslam@gmail.com" class="bg-teal-500 text-gray-900 font-semibold py-3 px-6 rounded-lg transition-all shadow-md flex items-center space-x-2 hover:bg-teal-400 transform hover:scale-105">
                     <!-- Email Icon -->
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                     <span>Email Me</span>
                 </a>
                 
-                <a href="https://linkedin.com/in/muxd-aslam" target="_blank" class="bg-gray-700 text-yellow-400 hover:bg-yellow-500 hover:text-gray-900 font-semibold py-3 px-6 rounded-lg transition-all shadow-md flex items-center space-x-2">
+                <a href="https://linkedin.com/in/muxd-aslam" target="_blank" class="bg-teal-500 text-gray-900 font-semibold py-3 px-6 rounded-lg transition-all shadow-md flex items-center space-x-2 hover:bg-teal-400 transform hover:scale-105">
                     <!-- LinkedIn Icon -->
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.263-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                     <span>LinkedIn</span>
@@ -341,9 +342,28 @@
         </div>
     </footer>
 
-    <!-- JavaScript for Footer Year -->
+    <!-- JavaScript for Footer Year and Scroll Animations -->
     <script>
         document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        const faderElements = document.querySelectorAll('.animate-on-scroll');
+        
+        const appearOptions = {
+            threshold: 0.2 // Trigger when 20% of the element is visible
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // Stop observing once visible
+                }
+            });
+        }, appearOptions);
+
+        faderElements.forEach(element => {
+            observer.observe(element);
+        });
     </script>
 </body>
 </html>
